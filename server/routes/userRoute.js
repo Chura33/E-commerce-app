@@ -26,13 +26,15 @@ async(req,res)=>{
         let {name, email, password} = req.body;
         const salt = await(bcrypt.genSalt(saltRounds));
         const hash = await bcrypt.hash(password, salt);
-        req.body.password = hash;
-        newUser = new User(req.body)
+        password = hash;
+        newUser = new User({
+            name, email, password
+        })
         newUser.save();
         // console.log(newUser);
         res.status(201).send("New User Created");
     }
-
+// 
     else{
         res.status(400).send("This user already exists")
     }
