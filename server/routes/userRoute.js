@@ -4,6 +4,8 @@ const User = require("../models/User")
 const {body, validationResult} = require("express-validator")
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
+const jwt = require("jsonwebtoken")
+const keys = require("../config/keys")
 
 router.get('/', (req,res)=>{
     res.send("THis is the user route");
@@ -32,7 +34,31 @@ async(req,res)=>{
         })
         newUser.save();
         // console.log(newUser);
-        res.status(201).send("New User Created");
+        // res.status(201).send("New User Created");
+        const payload = {
+            newUser:{
+                id:newUser.id
+            }
+        }
+
+        try{
+            const token = await jwt.sign(payload,
+                 keys.secret,
+                 {expiresIn: 3600 * 24})
+            res.status(201).json({token});
+        }
+        catch(err){
+            res.status(500).send("jwt error")
+        }
+        // jwt.sign(payload,
+        //      keys.secret,
+        //      {expiresIn: 3600 * 24},
+        //      (err, token)=>{
+        //         if (err) throw err;
+        //         res.json({token})
+        //      });
+
+        console.log(payload);
     }
 
     else{
