@@ -3,7 +3,8 @@ const app = express()
 const PORT = process.env.PORT||5000;
 const connect = require('./config/db');
 
-app.use('/api/products', require('./routes/productRoute'))
+app.use(express.json({extended: false}));
+// app.use('/api/products', require('./routes/productRoute'))
 app.use('/api/user', require('./routes/userRoute'));
 
 connect().then(()=>{
