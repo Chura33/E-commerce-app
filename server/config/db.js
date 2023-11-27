@@ -3,7 +3,7 @@ const config = require("./keys");
 const db = config.mongoURI;
 
 const connectDB = async () =>{
-    try{
+    try {
         let res = await mongoose.connect(db)
         console.log("connected to the database")
     }
