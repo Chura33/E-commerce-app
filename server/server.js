@@ -6,6 +6,7 @@ const connect = require('./config/db');
 app.use(express.json({extended: false}));
 // app.use('/api/products', require('./routes/productRoute'))
 app.use('/api/user', require('./routes/userRoute'));
+app.use('/api/auth', require('./routes/authRoute'));
 
 connect().then(()=>{
     app.listen(PORT, ()=>{

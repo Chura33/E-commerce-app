@@ -20,24 +20,24 @@ async(req,res)=>{
         return res.status(400).json({ errors: expressValidationErrors.array() });
       }
    try{
-    let newUser = await User.findOne({
+    let user = await User.findOne({
         email: req.body.email
     });
 
-    if (!newUser){
+    if (!user){
         let {name, email, password} = req.body;
         const salt = await(bcrypt.genSalt(saltRounds));
         const hash = await bcrypt.hash(password, salt);
         password = hash;
-        newUser = new User({
+        user = new User({
             name, email, password
         })
-        newUser.save();
+        user.save();
         // console.log(newUser);
         // res.status(201).send("New User Created");
         const payload = {
-            newUser:{
-                id:newUser.id
+            user:{
+                id:user.id
             }
         }
 
