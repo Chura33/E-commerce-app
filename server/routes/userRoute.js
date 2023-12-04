@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken")
 const keys = require("../config/keys")
 
 router.get('/', (req,res)=>{
-    res.send("THis is the user route");
+    res.send("This is the user route");
 })
 router.post('/', 
 [body('name').trim().isLength({ min: 3 }).withMessage('Username must be at least 3 characters long'),
