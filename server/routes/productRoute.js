@@ -35,7 +35,7 @@ router.post(
             brand,
         });
         const product = await newProdcut.save();
-        res.json
+        res.json({msg: 'Product created'})
         } catch (error) {
             console.error(error.message);
             res.send(500).send("Server error");
