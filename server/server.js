@@ -7,6 +7,7 @@ app.use(express.json({extended: false}));
 // app.use('/api/products', require('./routes/productRoute'))
 app.use('/api/user', require('./routes/userRoute'));
 app.use('/api/auth', require('./routes/authRoute'));
+app.use('/api/products', require('./routes/productRoute'));
 
 connect().then(()=>{
     app.listen(PORT, ()=>{

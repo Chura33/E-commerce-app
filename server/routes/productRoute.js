@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../middlewares/authorization")
 const { check, validationResult } = require("express-validator");
-const Product = require("..models/Product");
+const Product = require("../models/product");
 
 router.post(
     "/",
@@ -23,7 +23,7 @@ router.post(
         }
         try {
             console.log(req.body);
-            console.log(res.user);
+            console.log(req.user);
             const { name, category, price, description, brand, quantity } = req.body;
             const newProdcut = new Product({
             userId: req.user.id,
