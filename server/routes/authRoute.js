@@ -8,7 +8,6 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/keys")
 router.get("/", auth, async(req, res)=>{
     const id = req.user.id;
-
     const user = await User.findById(id).select("-password");
     console.log(user);
     res.json({user});
