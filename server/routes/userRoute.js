@@ -10,12 +10,18 @@ const keys = require("../config/keys")
 router.get('/', (req,res)=>{
     res.send("THis is the user route");
 })
+
+
 router.post('/', 
-[body('name').trim().isLength({ min: 3 }).withMessage('Username must be at least 3 characters long'),
+[
+body('name').trim().isLength({ min: 3 }).withMessage('Username must be at least 3 characters long'),
 body('email').isEmail().normalizeEmail().withMessage('Invalid email format'),
-body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),],
+body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
+],
 async(req,res)=>{
     const expressValidationErrors = validationResult(req);
+
+    // if there are any errors
     if (!expressValidationErrors.isEmpty()) {
         return res.status(400).json({ errors: expressValidationErrors.array() });
       }
