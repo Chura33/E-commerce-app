@@ -25,6 +25,8 @@ async(req,res)=>{
     if (!expressValidationErrors.isEmpty()) {
         return res.status(400).json({ errors: expressValidationErrors.array() });
       }
+
+      
    try{
     let user = await User.findOne({
         email: req.body.email

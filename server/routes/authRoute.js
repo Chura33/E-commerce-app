@@ -6,6 +6,8 @@ const bcrypt = require("bcryptjs");
 const {body, validationResult} = require("express-validator")
 const jwt = require("jsonwebtoken");
 const config = require("../config/keys")
+
+
 router.get("/", auth, async(req, res)=>{
     const id = req.user.id;
 
@@ -17,12 +19,16 @@ router.get("/", auth, async(req, res)=>{
 router.post('/', 
 [
 body('email').isEmail().normalizeEmail().withMessage('Invalid email format'),
-body('password').exists().withMessage('Password must be at least 6 characters long'),],
+body('password').exists().withMessage('Password must be at least 6 characters long'),
+],
+
 async(req,res)=>{
     const expressValidationErrors = validationResult(req);
     if (!expressValidationErrors.isEmpty()) {
         return res.status(400).json({ errors: expressValidationErrors.array() });
       }
+
+
    try{
     let user = await User.findOne({
         email: req.body.email
