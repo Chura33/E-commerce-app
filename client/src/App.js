@@ -1,12 +1,12 @@
 import React from 'react';
 
 import NavBar from "./components/general/NavBar";
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <NavBar/>
+      <NavBar />
       <h1>E-Commerce Web App</h1>
     </div>
   );
