@@ -5,21 +5,21 @@ const initialState = {
     isAuthenticated: false,
     token: localStorage.getItem("token"),
     user: {},
-    errrors: []
+    errors: []
 }
 
-export default fuction(state = initialState, action); {
-    const {paylad}= action
-    switch(action.type){
+export default function(state = initialState, action) {
+    const { payload } = action;
+    switch(action.type) {
         case SET_CURRENT_USER:
-            return{
+            return {
                 ...state,
                 isAuthenticated: true,
                 user: payload
             }
         case SUCCESSFUL_REGISTER:
             localStorage.setItem("token", payload.token)
-            return{
+            return {
                 ...state,
                 ...payload,
                 isAuthenticated: true
@@ -27,17 +27,17 @@ export default fuction(state = initialState, action); {
         case FAILURE_REGISTER:
         case AUTH_ERROR:
             localStorage.removeItem("token")
-            return{
+            return {
                 ...state,
                 token: null,
                 isAuthenticated: false
             }
         case ERRORS:
-            return{
+            return {
                 ...state,
-                errrors: paylad
+                errors: payload
             }
         default:
-                return state
-    };
+            return state
+    }
 };

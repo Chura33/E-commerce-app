@@ -1,16 +1,16 @@
 import React from "react";
 
-const background = () => {
+const Background = () => {
     return (
-        <section class="landing">
-            <div class="dark-overlay">
-                <div class="landing-inner">
-                    <h1 class="x-large">Fast Delivery</h1>
-                    <p class="lead">Shop and smile</p>
+        <section className="landing">
+            <div className="dark-overlay">
+                <div className="landing-inner">
+                    <h1 className="x-large">Fast Delivery</h1>
+                    <p className="lead">Shop and smile</p>
                 </div>
             </div>
         </section>
     );
 };
 
-export default background;
+export default Background;

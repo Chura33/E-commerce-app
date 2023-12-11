@@ -1,5 +1,5 @@
-import { configStore, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
+import { createStore, applyMiddleware, compose } from "redux";
+import { thunk, withExtraArgument } from "redux-thunk";
 import rootReducer from "./reducers";
 
 const initialState = {};
@@ -8,13 +8,13 @@ const middleware = [thunk];
 let store;
 
 try {
-    store = configStore(
+    store = createStore(
         rootReducer,
         initialState,
         compose(applyMiddleware(...middleware))
     );
 } catch (error) {
-    store = configStore(
+    store = createStore(
         rootReducer,
         initialState,
         compose(applyMiddleware(...middleware))

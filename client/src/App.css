@@ -6,7 +6,7 @@
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
-  --main-color: #18dd9b;
+  --main-color: #15dd90;
 
   --page-header-bgColor: #242e42;
   --page-header-bgColor-hover: #1d2636;
@@ -330,42 +330,42 @@ button {
 }
 
 /* Navbar */
-.navbar {
+.main-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 2rem;
+  padding: 0.4rem 2rem;
   position: fixed;
   z-index: 1;
   width: 100%;
   top: 0;
   border-bottom: solid 1px var(--primary-color);
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
-.navbar ul {
+.main-navbar ul {
   display: flex;
 }
 
-.navbar a {
+.main-navbar a {
   color: #fff;
   padding: 0.45rem;
   margin: 0 0.25rem;
 }
 
-.navbar a:hover {
+.main-navbar a:hover {
   color: var(--hover-color);
 }
 
-.navbar .welcome span {
+.main-navbar .welcome span {
   margin-right: 0.6rem;
 }
 
 /* Landing Page */
 .landing {
-  margin-top: 6.3%;
+  margin-top: 0.0%;
   position: relative;
-  background: url("./images/live.jpg") no-repeat center center/cover;
+  background: url("../public/assets/images/eshop1.jpg") no-repeat center center/cover;
   height: 60vh;
 }
 
@@ -404,24 +404,24 @@ button {
     font-size: 1rem;
   }
 
-  /* Navbar
-  .navbar {
+  /* Navbar */
+  .main-navbar {
     display: block;
     text-align: center;
   }
 
-  .navbar ul {
+  .main-navbar ul {
     text-align: center;
     justify-content: center;
   }
 
-  .navbar h1 {
+  .main-navbar h1 {
     margin-bottom: 1rem;
   }
 
-  .navbar .welcome {
+  .main-navbar .welcome {
     display: none;
-  } */
+  }
 }
 
 /* Dashboard */

@@ -1,23 +1,31 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Routes } from "react-router-dom";
+import React from "react";
+import { Provider } from "react-redux";
+import { BrowserRouter as Router, Route, Routes, Switch } from "react-router-dom";
+import store from "./store";
 
 import NavBar from "./components/general/NavBar";
 
-import Background from './components/landing/background';
-
 // Landing page components
+import Background from "./components/landing/background";
 import "./App.css";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <NavBar />
-        <Routes>
-          <Route exact path="/" components={Background} />
-        </Routes>
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div className="App">
+          <NavBar />
+          <Routes>
+            <Route exact path="/" Component={Background} />
+            <Route exact path="/register" Component={Register} />
+            <Route exact path="/login" Component={Login} />
+
+          </Routes>
+        </div>
+      </Router>
+      </Provider>
   );
 };
 
