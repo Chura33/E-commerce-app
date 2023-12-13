@@ -6,6 +6,8 @@ const bcrypt = require("bcryptjs");
 const {body, validationResult} = require("express-validator")
 const jwt = require("jsonwebtoken");
 const config = require("../config/keys")
+
+
 router.get("/", auth, async(req, res)=>{
     const id = req.user.id;
 
@@ -16,13 +18,19 @@ router.get("/", auth, async(req, res)=>{
 
 router.post('/', 
 [
-body('email').isEmail().normalizeEmail().withMessage('Invalid email format'),
-body('password').exists().withMessage('Password must be at least 6 characters long'),],
+    body('email').isEmail().normalizeEmail().withMessage('Invalid email format'),
+    body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
+],
+
 async(req,res)=>{
-    const expressValidationErrors = validationResult(req);
-    if (!expressValidationErrors.isEmpty()) {
-        return res.status(400).json({ errors: expressValidationErrors.array() });
+    const loginErrors = validationResult(req);
+    if (!loginErrors.isEmpty()) {
+        console.log("there are errors")
+        console.log(loginErrors.array())
+        return res.status(400).json({ errors: loginErrors.array() });
       }
+
+      
    try{
     let user = await User.findOne({
         email: req.body.email
@@ -39,7 +47,7 @@ async(req,res)=>{
 
         if (!isPasswordCorrect){
             // if the password is not correct: send a vague message to the user.
-            res.status(400).send("Invalid email or password");
+            return res.status(400).send("Invalid email or password");
         }
 
         const payload = {
