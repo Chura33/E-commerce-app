@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import {} from "react-router-dom";
 import Input from "../general/Input";
+import { register } from "../../actions/authActions";
 
 class Register extends Component { 
     constructor() {
@@ -7,14 +10,15 @@ class Register extends Component {
         this.state={
             name:"",
             email:"",
-            password1:"",
+            password:"",
             password2:"",
         }
     }
-    onChange(e) {
+    onChange = (e) => {
         console.log(e);
     }
     render() {
+        const {name, password, password2, email} = this.state
         return (
           <div className="container">
             <h1 className="large text-primary">Register</h1>
@@ -22,34 +26,38 @@ class Register extends Component {
                 <i className="fas fa-user"></i>Create Your Account
             </p>
             <div className="form">
-                <input 
+                <input
+                    name="name"
                     type="text"
                     placeholder="Enter
-                    Name" value="name"
+                    Name" value={name}
                     onChange={this.onChange}
                 />
             </div>
             <div className="form">
                 <input 
+                    name="email"
                     type="email"
                     placeholder="Enter Email"
-                    value="email"
+                    value={email}
                     onChange={this.onChange}
                 />
             </div>
             <div className="form">
                 <input 
+                    name="passward"
                     type="password"
                     placeholder="Enter Password"
-                    value="Password1"
+                    value={password}
                     onChange={this.onChange}
                 />
             </div>
             <div className="form">
                 <input 
+                    name="password2"
                     type="password"
                     placeholder="Confirm Password"
-                    value="Password2"
+                    value={password2}
                     onChange={this.onChange}
                 />
             </div>
@@ -58,5 +66,10 @@ class Register extends Component {
         );
     }
 }
+const mapStateToProps = (state) => ({
+    auth: state.auth,
+});
 
-export default Register
+export default connect(mapStateToProps, { register })(
+    (Register)
+    );

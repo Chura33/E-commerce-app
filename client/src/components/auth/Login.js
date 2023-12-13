@@ -40,7 +40,7 @@ export default class Login extends Component {
             </div>
             <button className="btn btn-primary">Sign In</button>
             <p className="my-1">
-                Don't Have an Account?<Link to="./register">Sign Up</Link></p>
+                Don't Have an Account?<Link to="./register"> Sign Up</Link></p>
           </div>
         );
     }

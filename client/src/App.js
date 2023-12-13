@@ -7,9 +7,10 @@ import NavBar from "./components/general/NavBar";
 
 // Landing page components
 import Background from "./components/landing/background";
-import "./App.css";
+
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import "./App.css";
 
 function App() {
   return (
