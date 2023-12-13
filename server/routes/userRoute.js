@@ -14,7 +14,7 @@ router.get('/', (req,res)=>{
 
 router.post('/', 
 [
-body('name').trim().isLength({ min: 3 }).withMessage('Username must be at least 3 characters long'),
+body('name').trim().isLength({ min: 3 }).withMessage('Username must be at least 3 characters long, cant be less'),
 body('email').isEmail().normalizeEmail().withMessage('Invalid email format'),
 body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
 ],
@@ -24,6 +24,7 @@ async(req,res)=>{
     // if there are any errors
     if (!expressValidationErrors.isEmpty()) {
         return res.status(400).json({ errors: expressValidationErrors.array() });
+        // return res.status(400).send("incomplete details")
       }
 
       
@@ -33,12 +34,13 @@ async(req,res)=>{
     });
 
     if (!user){
-        let {name, email, password} = req.body;
+        let {name, email, password, role} = req.body;
+        console.log(req.body)
         const salt = await(bcrypt.genSalt(saltRounds));
         const hash = await bcrypt.hash(password, salt);
         password = hash;
         user = new User({
-            name, email, password
+            name, email, password, role
         })
         user.save();
         // console.log(newUser);
