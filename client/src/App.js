@@ -10,11 +10,17 @@ import Register from './components/auth/Register';
 import Login   from './components/auth/Login';
 import setAuthToken from './util/setAuthToken';
 import { setCurrentUser } from './actions/authActions';
+// import Landing from './components/landing';
 
 
 // landing components
 import Background from './components/landing/Background';
-import ParentComponent from './components/general/ParentCommponent';
+import ParentComponentForLogin from './components/general/ParentComponentForLogin';
+import ParentComponentForRegister from './components/general/ParentComponent';
+import Landing from './components/landing';
+import ProtectedRoute from './components/general/ProtectedRoute';
+import Dashboard from './components/dashboard';
+
 
 if (localStorage.token){
   setAuthToken(localStorage.token);
@@ -27,11 +33,14 @@ function App() {
     <Provider store={store}>
     <Router>
       <div className="App">
-        <NavBar/>
+        {/* <NavBar/> */}
         <Routes>
-          <Route exact path='/' Component={Background}/>
-          <Route exact path='/register' Component={ParentComponent}/>
-          <Route exact path='/login' Component={Login}/>
+          <Route exact path='/' Component={Landing}/>
+          <Route exact path='/register' Component={ParentComponentForRegister}/>
+          <Route exact path='/login' Component={ParentComponentForLogin}/>
+          <Route element={<ProtectedRoute/>}>
+            <Route exact path = "/dashboard" Component={Dashboard}/>
+          </Route>
         </Routes>
       </div>
     </Router>

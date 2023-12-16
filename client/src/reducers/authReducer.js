@@ -1,6 +1,5 @@
-import { SUCCESSFUL_REGISTER, ERRORS, FAILURE_REGISTER, AUTH_ERROR, SUCCESSFUL_LOGIN, FAILURE_LOGIN } from "../actions/types";
+import { SUCCESSFUL_REGISTER, ERRORS, FAILURE_REGISTER, AUTH_ERROR, SUCCESSFUL_LOGIN, FAILURE_LOGIN, LOGOUT } from "../actions/types";
 import {SET_CURRENT_USER} from "../actions/types";
-import {isEmpty} from "lodash";
 
 const initialState = {
     isAuthenticated: false,
@@ -32,6 +31,7 @@ export default function(state = initialState, action){
             case FAILURE_REGISTER:
             case AUTH_ERROR:
             case FAILURE_LOGIN:
+            case LOGOUT:
                     localStorage.removeItem("token");
                     return {
                         ...state,

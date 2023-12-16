@@ -18,18 +18,18 @@ import { login } from '../../actions/authActions';
 
     componentWillReceiveProps(nextProps){
       console.log(nextProps)
-    //   if (nextProps  && nextProps.auth.errors && nextProps.auth.errors.length > 0){
-    //     nextProps.auth.errors.forEach(error=>{
-    //         message.error(error.msg); 
-    //     })
-    // }
+      if (nextProps  && nextProps.errors && nextProps.errors.length > 0){
+        nextProps.auth.errors.forEach(error=>{
+            message.error(error.msg); 
+        })
+    }
 
-    // if (nextProps.auth.isAuthenticated === true){
-    //     message.success("Thank you for signing up");
-    //     const { navigate } = this.props;
-    //     console.log(nextProps);
-    //     setTimeout(()=>navigate('/'), 3000);
-    //   }
+    if (nextProps.isAuthenticated === true){
+        message.success("Thank you for signing up");
+        const { navigate } = this.props;
+        console.log(this.state);
+        setTimeout(()=>this.props.navigate('/'), 3000);
+      }
     }
     onChange(e){
       this.setState({[e.target.name]: e.target.value});

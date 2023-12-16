@@ -44,7 +44,8 @@ auth,
 router.get('/', async(req,res)=>{
     try {
         const products = await Product.find();
-        res.json(products);
+        // console.log(products);
+        res.send(products);
     } catch (error) {
         console.error(error.message);
         res.status(500).send("server error")

@@ -1,15 +1,15 @@
 import React from "react";
-import Register from "../auth/Register";
+import Login from "../auth/Login";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const ParentComponent = () =>{
+const ParentComponentForLogin = () =>{
     const navigate = useNavigate();
     const location = useLocation();
     console.log("parent component mounted");
 
     return(
-        <Register location = {location} navigate = {navigate}/>
+        <Login location = {location} navigate = {navigate}/>
     )
 }
 
-export default ParentComponent;
+export default ParentComponentForLogin;

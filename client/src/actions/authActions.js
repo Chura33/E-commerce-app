@@ -7,7 +7,8 @@ import {
     ERRORS,
     AUTH_ERROR,
     SUCCESSFUL_LOGIN,
-    FAILURE_LOGIN
+    FAILURE_LOGIN,
+    LOGOUT,
 } from "./types"
 import setAuthToken from "../util/setAuthToken"
 
@@ -88,8 +89,10 @@ export const login = (userData)=>   async (dispatch) =>{
             })
         } else{
             dispatch({
-                type:FAILURE_REGISTER,
+                type:FAILURE_LOGIN,
             })
         }
     }
 }
+
+export const logout = () => (dispatch) => dispatch({ type: LOGOUT });

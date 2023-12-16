@@ -25,8 +25,8 @@ router.post('/',
 async(req,res)=>{
     const loginErrors = validationResult(req);
     if (!loginErrors.isEmpty()) {
-        console.log("there are errors")
         console.log(loginErrors.array())
+        // console.log("there are errors")
         return res.status(400).json({ errors: loginErrors.array() });
       }
 
@@ -38,16 +38,17 @@ async(req,res)=>{
 
     if (!user){
         // if there's no user. This means that the login credentials are wrong
-        res.status(400).send("Email or password is invalid") 
+        console.log("no user");
+       return res.status(401).json({errors: [{msg:"Email or password is invalid"}]}) 
     }
 
-    else{
-        const {email, password} = req.body;
+    
+        const {password} = req.body;
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
         if (!isPasswordCorrect){
             // if the password is not correct: send a vague message to the user.
-            return res.status(400).send("Invalid email or password");
+            return res.status(400).json({errors: [{msg:"Email or password is invalid"}]});
         }
 
         const payload = {
@@ -65,17 +66,11 @@ async(req,res)=>{
                 res.json({token})
             }
         )
-    }
    }
 
 catch(error){
-    if (error.name === 'ValidationError') {
-        // Mongoose validation error
         const errors = Object.values(error.errors).map((err) => err.message);
         return res.status(400).json({ errors });
-      }
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
 }
 })
 
